@@ -32,13 +32,19 @@
 
 
 from flask import Flask
+from flask_cors import CORS
 from flask_restful import Api
 from resources.dog_resources import (
             DogDetails, DogDetailsCSV, GenerateLeatherCollar, 
             GenerateLeatherLeach, GeneratePolyester, CleanUpNumber)
 
 
+from config.settings import CORS_ORIGINS
+
+
 app=Flask(__name__)
+
+CORS(app, supports_credentials=True, origins=CORS_ORIGINS)
 
 api=Api(app)
 
